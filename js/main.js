@@ -21,12 +21,10 @@ function flipCard() {
     if (this === firstCard) return;
     
     this.classList.add('flip');
-    //console.log(this);
     
     if (hasFlippedCard == false) {
         hasFlippedCard = true;
         firstCard = this;
-        //console.log(hasFlippedCard, this);
     } else {
         hasFlippedCard = false;
         secoundCard = this;
@@ -36,7 +34,6 @@ function flipCard() {
 }
 
 
-
 function checkForMatch (){
         if (firstCard.dataset.framework == secoundCard.dataset.framework){
             disableCards ();
@@ -44,26 +41,43 @@ function checkForMatch (){
             if (pairs === cardsNum/2) {congratulation();}
         } else {        
             flipCardsBack ();
+            
         }
 }
 
 
 function disableCards (){
+    setTimeout(() => {  
+        firstCard.classList.add('match');
+        secoundCard.classList.add('match');
+    }, 750);
+    
     firstCard.removeEventListener('click', flipCard);
     secoundCard.removeEventListener('click', flipCard);
+    setTimeout(() => {  
     resetBoard();
+    }, 1000);
 }
 
 
 function flipCardsBack (){
     lock = true;
+    setTimeout(() => {  
+        firstCard.classList.add('unmatch');
+        secoundCard.classList.add('unmatch');
+    }, 750);
     
     setTimeout(() => {  
-    firstCard.classList.remove('flip');
-    secoundCard.classList.remove('flip');
-        
-    resetBoard();
+        firstCard.classList.remove('unmatch');
+        secoundCard.classList.remove('unmatch');
+        firstCard.classList.remove('flip');
+        secoundCard.classList.remove('flip');
+    }, 1400);
+    
+    setTimeout(() => {  
+        resetBoard();
     }, 1500);
+
 }
 
 
@@ -72,7 +86,6 @@ function showMoves(){
     moves++;
     counter.innerHTML = moves;
 }
-
 
 
 function resetBoard(){
@@ -90,18 +103,9 @@ function congratulation (){
 }
 
 
-function resetGame(){
-    console.log("resetGame activated");
-    resetBoard();
-    moves = 0;
-    counter.innerHTML = moves;
-    shuffle();
-}
-
-
-
 var Clock = {
   totalSeconds: 0,
+    
   start: function () {
     var self = this;
 		function pad(val) { return val > 9 ? val : "0" + val; }
@@ -120,8 +124,6 @@ var Clock = {
 };
 
 
-
-
 (function shuffle() {
     cards.forEach(card => {
         var randomPos = Math.floor(Math.random() * cardsNum);
@@ -132,27 +134,20 @@ var Clock = {
 
 
 
-
 cards.forEach(card => card.addEventListener('click', flipCard));
 
 
 
-
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
+//CONGRATULATION modal
 span.onclick = function() {
   modal.style.display = "none";
 }
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
+
 
 
 
