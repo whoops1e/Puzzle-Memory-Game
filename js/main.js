@@ -1,13 +1,17 @@
 const cards = document.querySelectorAll('.card');
-const cardsNum = 20;
+const cardsNum = 20; //Cards number
 
-var counter = document.querySelector(".moves");
-var moves = 0;
-var gameTime = 0;
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
 
-var pairs=0;
+var counter = document.querySelector(".moves"); //Moves counter
 
-var hasFlippedCard = false;
+var moves = 0; //Completed moves (2 cards flipped)
+var pairs = 0; //Completed pairs
+
+
+var hasFlippedCard = false; 
 var firstCard, secoundCard;
 var lock = false;
 
@@ -37,7 +41,7 @@ function checkForMatch (){
         if (firstCard.dataset.framework == secoundCard.dataset.framework){
             disableCards ();
             pairs++;
-            if (pairs === 1) {congratulation();}
+            if (pairs === cardsNum/2) {congratulation();}
         } else {        
             flipCardsBack ();
         }
@@ -81,7 +85,7 @@ function resetBoard(){
 
 
 function congratulation (){
-    console.log("xdxd winner")
+    console.log("We have a winner!")
     modal.style.display = "block";
 }
 
@@ -118,15 +122,6 @@ var Clock = {
 
 
 
-
-
-
-
-
-
-
-
-
 (function shuffle() {
     cards.forEach(card => {
         var randomPos = Math.floor(Math.random() * cardsNum);
@@ -144,7 +139,20 @@ cards.forEach(card => card.addEventListener('click', flipCard));
 
 
 
-
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
 

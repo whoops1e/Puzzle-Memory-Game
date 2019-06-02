@@ -31,7 +31,7 @@ header {
 .score-panel{
     font-family: sans-serif;
     font-weight: bold;
-    color: azure; 
+    color: #f7f7f7; 
     text-align: center;
     flex-direction: row;
 }
@@ -71,10 +71,17 @@ header {
 }
 
 
+.back-face:hover {
+    background-color: #dddddd;
+}
+
+
+
 .card : active {
     transform: scale(0.97);
     transition: transform .5s;
 }
+
 
 .card.flip {
   transform: rotateY(180deg);
@@ -89,7 +96,7 @@ header {
     padding: 20px;
     position: absolute;
     border-radius: 5px;
-    background-color: azure;
+    background-color: #f7f7f7;
     backface-visibility: hidden;
 }
 
@@ -122,6 +129,7 @@ header {
 	font-weight:bold;
 	padding:1px 20px;
     margin-left: 10px;
+    margin-right: 10px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
 }
@@ -140,8 +148,7 @@ header {
 	top:1px;
 }
 
-footer {
-    
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -152,6 +159,59 @@ footer {
     padding: 3px;
     text-align: center;
 }
+
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    flex-direction: column;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    text-align: center;
+    display: block;
+    width: 50%;
+}
+.modal-header {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+}
+.modal-text {
+    padding-bottom: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 
 
 
